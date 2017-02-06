@@ -10,12 +10,12 @@
 		1C0F3354D2D29B4B10F91899 /* Pods_ParseApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D8915C4ED43627A2196A4E1 /* Pods_ParseApp.framework */; };
 		1CA2EE182558AC590A4A4CB7 /* Pods_ParseAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DA84C02904F6A2B841DDC9B /* Pods_ParseAppTests.framework */; };
 		75C859921E482D1400DCAF3E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75C859911E482D1400DCAF3E /* AppDelegate.swift */; };
-		75C859941E482D1400DCAF3E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75C859931E482D1400DCAF3E /* ViewController.swift */; };
 		75C859971E482D1400DCAF3E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 75C859951E482D1400DCAF3E /* Main.storyboard */; };
 		75C859991E482D1400DCAF3E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 75C859981E482D1400DCAF3E /* Assets.xcassets */; };
 		75C8599C1E482D1400DCAF3E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 75C8599A1E482D1400DCAF3E /* LaunchScreen.storyboard */; };
 		75C859A71E482D1400DCAF3E /* ParseAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75C859A61E482D1400DCAF3E /* ParseAppTests.swift */; };
 		75C859B21E482D1400DCAF3E /* ParseAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75C859B11E482D1400DCAF3E /* ParseAppUITests.swift */; };
+		75C859C01E482E2400DCAF3E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75C859BF1E482E2400DCAF3E /* LoginViewController.swift */; };
 		B76F2DE6A0703FE27C1FD3E6 /* Pods_ParseAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 648C3E2FB7F3BCBDE4A5A136 /* Pods_ParseAppUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -45,7 +45,6 @@
 		6F612612970F2BE0B0BE9CAF /* Pods-ParseApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ParseApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ParseApp/Pods-ParseApp.debug.xcconfig"; sourceTree = "<group>"; };
 		75C8598E1E482D1400DCAF3E /* ParseApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ParseApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		75C859911E482D1400DCAF3E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		75C859931E482D1400DCAF3E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		75C859961E482D1400DCAF3E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		75C859981E482D1400DCAF3E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		75C8599B1E482D1400DCAF3E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -56,6 +55,7 @@
 		75C859AD1E482D1400DCAF3E /* ParseAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ParseAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		75C859B11E482D1400DCAF3E /* ParseAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseAppUITests.swift; sourceTree = "<group>"; };
 		75C859B31E482D1400DCAF3E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		75C859BF1E482E2400DCAF3E /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		8E8F294F292C7EADE479FF54 /* Pods-ParseAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ParseAppUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ParseAppUITests/Pods-ParseAppUITests.release.xcconfig"; sourceTree = "<group>"; };
 		9A8E340F7F4CCF3A61642568 /* Pods-ParseAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ParseAppTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ParseAppTests/Pods-ParseAppTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D0DDE41269662FEDDA1EC126 /* Pods-ParseAppUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ParseAppUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ParseAppUITests/Pods-ParseAppUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -115,11 +115,11 @@
 			isa = PBXGroup;
 			children = (
 				75C859911E482D1400DCAF3E /* AppDelegate.swift */,
-				75C859931E482D1400DCAF3E /* ViewController.swift */,
 				75C859951E482D1400DCAF3E /* Main.storyboard */,
 				75C859981E482D1400DCAF3E /* Assets.xcassets */,
 				75C8599A1E482D1400DCAF3E /* LaunchScreen.storyboard */,
 				75C8599D1E482D1400DCAF3E /* Info.plist */,
+				75C859BF1E482E2400DCAF3E /* LoginViewController.swift */,
 			);
 			path = ParseApp;
 			sourceTree = "<group>";
@@ -446,7 +446,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				75C859941E482D1400DCAF3E /* ViewController.swift in Sources */,
+				75C859C01E482E2400DCAF3E /* LoginViewController.swift in Sources */,
 				75C859921E482D1400DCAF3E /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -698,6 +698,7 @@
 				75C859B81E482D1400DCAF3E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		75C859B91E482D1400DCAF3E /* Build configuration list for PBXNativeTarget "ParseAppTests" */ = {
 			isa = XCConfigurationList;
@@ -706,6 +707,7 @@
 				75C859BB1E482D1400DCAF3E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		75C859BC1E482D1400DCAF3E /* Build configuration list for PBXNativeTarget "ParseAppUITests" */ = {
 			isa = XCConfigurationList;
@@ -714,6 +716,7 @@
 				75C859BE1E482D1400DCAF3E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
