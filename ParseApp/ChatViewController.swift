@@ -14,7 +14,9 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var logoutButton: UIBarButtonItem!
    
-    var messages: NSArray?
+    
+    var messages: [PFObject]?
+    var users: [PFObject]?
     
     @IBOutlet weak var messageField: UITextField!
     
@@ -32,21 +34,37 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         // construct PFQuery
         let query = PFQuery(className: "Message")
         query.order(byDescending: "createdAt")
-        query.includeKey("user")
+        query.includeKey("_p_User")
         query.limit = 20
         
         // fetch data asynchronously
         query.findObjectsInBackground { (messages: [PFObject]?, error: Error?) -> Void in
             if let messages = messages {
                 // do something with the data fetched
+                self.messages = messages
                 self.tableView.reloadData()
             } else {
                 // handle error
                 print(error?.localizedDescription)
             }
         }
+        let query2 = PFQuery(className: "_User")
+    
         
-        //Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(ChatViewController.onTimer), userInfo: nil, repeats: true)
+        // fetch data asynchronously
+        query2.findObjectsInBackground { (users: [PFObject]?, error: Error?) -> Void in
+            if let users = users {
+                // do something with the data fetched
+                self.users = users
+                self.tableView.reloadData()
+            } else {
+                // handle error
+                print(error?.localizedDescription)
+            }
+        }
+
+        
+        Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(ChatViewController.onTimer), userInfo: nil, repeats: true)
     }
 
     override func didReceiveMemoryWarning() {
@@ -57,9 +75,8 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     @IBAction func onSend(_ sender: AnyObject) {
         let parseMessage = PFObject(className: "Message")
-        parseMessage.setObject(PFUser.current()!, forKey: "User")
+        parseMessage.setObject(PFUser.current(), forKey: "User")
         parseMessage["text"] = messageField.text
-        parseMessage["author"] = PFUser.current()
         
         parseMessage.saveInBackground { (success:Bool, error:Error?) in
             if success {
@@ -87,15 +104,22 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "TextCell", for: indexPath) as! TextCell
-        
-        let message = messages?[indexPath.row] as? PFObject
-        
-        print("row: \(indexPath)")
+        let message = messages?[indexPath.row]
         let text = message?["text"] as? String
+        let textAuthor = message?.object(forKey: "User") as! PFUser
+        
+        if let users = self.users {
+            
+            for user in users {
+                if textAuthor.objectId == user.objectId {
+                    cell.userLabel.text = user["username"] as? String
+                }
+            }
+        }
         
         cell.textMessageLabel.text = text
-        print(text)
         
         return cell
     }
@@ -103,24 +127,34 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     func onTimer() {
         // Add code to be run periodically
         
-        print("repeating")
         // construct PFQuery
         let query = PFQuery(className: "Message")
         query.order(byDescending: "createdAt")
-        query.includeKey("user")
+        query.includeKey("_p_User")
         query.limit = 20
+        
+        let query2 = PFQuery(className: "_User")
+        
+        // fetch data asynchronously
+        query2.findObjectsInBackground { (users: [PFObject]?, error: Error?) -> Void in
+            if let users = users {
+                // do something with the data fetched
+                self.users = users
+                
+                self.tableView.reloadData()
+            } else {
+                // handle error
+                print(error?.localizedDescription)
+            }
+        }
         
         query.findObjectsInBackground { (messages: [PFObject]?, error: Error?) -> Void in
             if let messages = messages {
                 // do something with the data fetched
-                DispatchQueue.main.async{
-                    self.tableView.reloadData()
-                    
-                }
-                //self.tableView.reloadData()
-                print("got messages")
-                let messageobj = messages[0]
-                print(messageobj["text"])
+                
+                self.messages = messages
+                self.tableView.reloadData()
+                
             } else {
                 // handle error
                 print(error?.localizedDescription)

@@ -123,21 +123,30 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Message" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nhg-Jy-Udq">
-                                                    <rect key="frame" x="8" y="8" width="304" height="20.5"/>
+                                                    <rect key="frame" x="8" y="8" width="69" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="user" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KxH-Qb-EfE">
+                                                    <rect key="frame" x="287" y="20.5" width="25" height="15"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="nhg-Jy-Udq" firstAttribute="leading" secondItem="cZO-kd-w2y" secondAttribute="leading" constant="8" id="5Kv-lM-saA"/>
-                                                <constraint firstAttribute="trailing" secondItem="nhg-Jy-Udq" secondAttribute="trailing" constant="8" id="VcH-Nt-H6u"/>
-                                                <constraint firstItem="nhg-Jy-Udq" firstAttribute="top" secondItem="cZO-kd-w2y" secondAttribute="top" constant="8" id="W99-o0-WKG"/>
-                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="nhg-Jy-Udq" secondAttribute="bottom" constant="8" id="eob-et-lr0"/>
+                                                <constraint firstItem="nhg-Jy-Udq" firstAttribute="leading" secondItem="cZO-kd-w2y" secondAttribute="leading" constant="8" id="3rZ-V7-yVG"/>
+                                                <constraint firstAttribute="trailing" secondItem="KxH-Qb-EfE" secondAttribute="trailing" constant="8" id="6ky-pd-U0S"/>
+                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="nhg-Jy-Udq" secondAttribute="bottom" constant="8" id="IfX-hJ-SUY"/>
+                                                <constraint firstItem="nhg-Jy-Udq" firstAttribute="top" secondItem="cZO-kd-w2y" secondAttribute="top" constant="8" id="SCa-26-aIS"/>
+                                                <constraint firstAttribute="bottom" secondItem="KxH-Qb-EfE" secondAttribute="bottom" constant="8" id="bn2-0I-rsz"/>
+                                                <constraint firstItem="KxH-Qb-EfE" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="nhg-Jy-Udq" secondAttribute="trailing" constant="8" id="j8L-G7-cbb"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="textMessageLabel" destination="nhg-Jy-Udq" id="iuc-RA-lhm"/>
+                                            <outlet property="userLabel" destination="KxH-Qb-EfE" id="gZx-H9-oE0"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
