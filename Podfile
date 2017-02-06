@@ -7,6 +7,7 @@ target 'ParseApp' do
 
   # Pods for ParseApp
   pod 'Parse'
+  pod 'ParseUI'
 
   target 'ParseAppTests' do
     inherit! :search_paths
