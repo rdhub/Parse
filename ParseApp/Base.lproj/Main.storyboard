@@ -78,17 +78,17 @@
                     <connections>
                         <outlet property="emailField" destination="TPp-Lb-Y4g" id="ihk-kB-h4V"/>
                         <outlet property="passwordField" destination="Jqp-0a-7ua" id="FW0-IM-J5t"/>
-                        <segue destination="HXs-sQ-9qi" kind="presentation" identifier="loginSegue" id="dLS-IF-UYn"/>
+                        <segue destination="vWA-MM-n9d" kind="presentation" identifier="loginSegue" id="Eu9-g5-dQc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="117.59999999999999" y="123.68815592203899"/>
         </scene>
-        <!--View Controller-->
+        <!--Chat-->
         <scene sceneID="ZgY-zy-JxA">
             <objects>
-                <viewController id="HXs-sQ-9qi" sceneMemberID="viewController">
+                <viewController id="HXs-sQ-9qi" customClass="ChatViewController" customModule="ParseApp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="0M1-Tj-XIx"/>
                         <viewControllerLayoutGuide type="bottom" id="Diu-nr-tiv"/>
@@ -96,12 +96,59 @@
                     <view key="view" contentMode="scaleToFill" id="vdv-ix-NNt">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Rh5-Vl-Tm9">
+                                <rect key="frame" x="8" y="72" width="260" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ohW-CH-PW7">
+                                <rect key="frame" x="276" y="72" width="36" height="30"/>
+                                <state key="normal" title="Send"/>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="ohW-CH-PW7" secondAttribute="trailing" constant="8" id="KIP-XX-skN"/>
+                            <constraint firstItem="Rh5-Vl-Tm9" firstAttribute="top" secondItem="0M1-Tj-XIx" secondAttribute="bottom" constant="8" id="TmP-wE-O8C"/>
+                            <constraint firstItem="Rh5-Vl-Tm9" firstAttribute="leading" secondItem="vdv-ix-NNt" secondAttribute="leading" constant="8" id="UMG-l6-9im"/>
+                            <constraint firstItem="ohW-CH-PW7" firstAttribute="top" secondItem="0M1-Tj-XIx" secondAttribute="bottom" constant="8" id="Yth-Ce-0oI"/>
+                            <constraint firstItem="ohW-CH-PW7" firstAttribute="leading" secondItem="Rh5-Vl-Tm9" secondAttribute="trailing" constant="8" id="yAw-Sg-6aS"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Chat" id="vuQ-Dx-JVx">
+                        <barButtonItem key="leftBarButtonItem" title="Logout" id="m9n-TP-Cgw">
+                            <connections>
+                                <action selector="onLogout:" destination="HXs-sQ-9qi" id="RgJ-KU-bWh"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="logoutButton" destination="m9n-TP-Cgw" id="03R-Py-8w2"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uuI-re-FqR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="968" y="124"/>
+            <point key="canvasLocation" x="1965" y="123.59154929577466"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="eSc-DW-ml9">
+            <objects>
+                <navigationController storyboardIdentifier="ChatNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="vWA-MM-n9d" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="izc-Oh-8Ai">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="HXs-sQ-9qi" kind="relationship" relationship="rootViewController" id="KZ5-OS-1K8"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3hj-0D-LGk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="967.5" y="123.59154929577466"/>
         </scene>
     </scenes>
 </document>

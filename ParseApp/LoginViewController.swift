@@ -26,6 +26,17 @@ class LoginViewController: UIViewController {
     
 
     @IBAction func onSignup(_ sender: AnyObject) {
+        
+        let alertController = UIAlertController(title: "Error", message: "Username is already taken.", preferredStyle: .alert)
+        
+        // create an OK action
+        let OKAction = UIAlertAction(title: "OK", style: .default) { (action) in
+            // handle response here.
+        }
+        // add the OK action to the alert controller
+        alertController.addAction(OKAction)
+        
+        
         let newUser = PFUser()
         
         newUser.username = emailField.text
@@ -37,19 +48,37 @@ class LoginViewController: UIViewController {
                 
                 self.performSegue(withIdentifier: "loginSegue", sender: nil)
             } else {
-                print(error?.localizedDescription)
                 
+                self.present(alertController, animated: true) {
+                    // optional code for what happens after the alert controller has finished presenting
+                }
             }
         }
+        
     }
     
     
     @IBAction func onLogin(_ sender: AnyObject) {
+        
+        let alertController = UIAlertController(title: "Access Denied", message: "Invalid username or password.", preferredStyle: .alert)
+        
+        // create an OK action
+        let OKAction = UIAlertAction(title: "OK", style: .default) { (action) in
+            // handle response here.
+        }
+        // add the OK action to the alert controller
+        alertController.addAction(OKAction)
+        
+        
         PFUser.logInWithUsername(inBackground: emailField.text!, password: passwordField.text!) { (user: PFUser?, error:Error?) in
             if user != nil {
                 print("You're logged in")
                 
                 self.performSegue(withIdentifier: "loginSegue", sender: nil)
+            } else {
+                self.present(alertController, animated: true) {
+                    // optional code for what happens after the alert controller has finished presenting
+                }
             }
         }
     }
