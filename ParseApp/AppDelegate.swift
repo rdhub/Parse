@@ -21,13 +21,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Initialize Parse
         // Set applicationId and server based on the values in the Heroku settings.
         // clientKey is not used on Parse open source unless explicitly configured
-        Parse.initialize(
+        /*Parse.initialize(
             with: ParseClientConfiguration(block: { (configuration:ParseMutableClientConfiguration) -> Void in
                 configuration.applicationId = "myParseApp"
                 configuration.clientKey = nil  // set to nil assuming you have not set clientKey
                 configuration.server = "https://parseappdemo.herokuapp.com/parse"
             })
-        )
+        )*/
+        Parse.initialize(with: ParseClientConfiguration(block: { (configuration: ParseMutableClientConfiguration) in
+            configuration.applicationId = "CodePath-Parse"
+            configuration.server = "http://45.79.67.127:1337/parse"
+        }))
         
         // check if user is logged in.
         if PFUser.current() != nil {

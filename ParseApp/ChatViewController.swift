@@ -63,7 +63,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
 
         
-        Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(ChatViewController.onTimer), userInfo: nil, repeats: true)
+        Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(ChatViewController.onTimer), userInfo: nil, repeats: true)
     }
 
     override func didReceiveMemoryWarning() {
@@ -74,7 +74,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     @IBAction func onSend(_ sender: AnyObject) {
         let parseMessage = PFObject(className: "Message")
-        parseMessage.setObject(PFUser.current()!, forKey: "User")
+        parseMessage.setObject(PFUser.current()!, forKey: "user")
         parseMessage["text"] = messageField.text
         
         parseMessage.saveInBackground { (success:Bool, error:Error?) in
@@ -107,14 +107,17 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         let cell = tableView.dequeueReusableCell(withIdentifier: "TextCell", for: indexPath) as! TextCell
         let message = messages?[indexPath.row]
         let text = message?["text"] as? String
-        let textAuthor = message?.object(forKey: "User") as! PFUser
+        let textAuthor = message?.object(forKey: "user") as? PFUser
         
         cell.userLabel.text = nil //initially set to empty
         
         if let users = self.users {
             for user in users {
-                if textAuthor.objectId == user.objectId {
-                    cell.userLabel.text = user["username"] as? String
+                if let textAuthor = textAuthor {
+                    
+                    if textAuthor.objectId == user.objectId {
+                        cell.userLabel.text = user["username"] as? String
+                    }
                 }
             }
         }
@@ -128,11 +131,14 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         // Add code to be run periodically
         
         let userQuery = PFQuery(className: "_User")
+        userQuery.limit = 1000
         // fetch data asynchronously
         userQuery.findObjectsInBackground { (users: [PFObject]?, error: Error?) -> Void in
             if let users = users {
                 // do something with the data fetched
                 self.users = users
+                print("USERS")
+                print(users)
                 self.tableView.reloadData()
                 
             } else {
@@ -152,6 +158,8 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
                 // do something with the data fetched
                 
                 self.messages = messages
+                print("MESSAGES")
+                print(messages)
                 self.tableView.reloadData()
                 
             } else {
