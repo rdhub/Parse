@@ -63,7 +63,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
 
         
-        Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(ChatViewController.onTimer), userInfo: nil, repeats: true)
+        Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(ChatViewController.onTimer), userInfo: nil, repeats: true)
     }
 
     override func didReceiveMemoryWarning() {
@@ -110,17 +110,27 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         let textAuthor = message?.object(forKey: "user") as? PFUser
         
         cell.userLabel.text = nil //initially set to empty
+        if let user = textAuthor {
         
-        if let users = self.users {
+           
+            user.fetchInBackground(block: { (user:PFObject?, error: Error?) in
+                    let user = user as! PFUser
+                    cell.userLabel.text = user.username
+            })
+            
+        }
+        /*if let users = self.users {
             for user in users {
                 if let textAuthor = textAuthor {
                     
                     if textAuthor.objectId == user.objectId {
+                        print("textauthor")
+                        print(textAuthor)
                         cell.userLabel.text = user["username"] as? String
                     }
                 }
             }
-        }
+        }*/
         
         cell.textMessageLabel.text = text
         
@@ -137,8 +147,8 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
             if let users = users {
                 // do something with the data fetched
                 self.users = users
-                print("USERS")
-                print(users)
+                //print("USERS")
+                //print(users)
                 self.tableView.reloadData()
                 
             } else {
@@ -150,6 +160,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         // construct PFQuery
         let messageQuery = PFQuery(className: "Message")
+        messageQuery.includeKey("user")
         messageQuery.order(byDescending: "createdAt")
         messageQuery.limit = 20
         
@@ -158,8 +169,8 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
                 // do something with the data fetched
                 
                 self.messages = messages
-                print("MESSAGES")
-                print(messages)
+                //print("MESSAGES")
+                //print(messages)
                 self.tableView.reloadData()
                 
             } else {
